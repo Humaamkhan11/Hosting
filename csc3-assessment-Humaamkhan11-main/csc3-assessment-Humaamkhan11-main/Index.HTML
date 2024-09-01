@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Style Loft</title>
+    <style>
+        /* Basic CSS for layout and styling */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation bar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Centering container for images */
+        .centered-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-options {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .product-options select {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .product-options button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .product-options button:hover {
+            background-color: #575757;
+        }
+
+        .additional-images {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .additional-images img {
+            width: calc(33% - 10px);
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #575757;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .cart-items {
+            margin: 20px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item span {
+            flex: 1;
+            text-align: center;
+        }
+
+        .pay-button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .pay-button:hover {
+            background-color: #218838;
+        }
+
+        /* New styles for Womens section */
+        .womens-section, .mens-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .womens-product, .mens-product {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .womens-product img, .mens-product img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="title">The Style Loft</div>
+        <div class="nav-links">
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('mens')">Mens</a>
+            <a href="#" onclick="showSection('womens')">Womens</a>
+            <a href="#" onclick="showSection('contact')">Contact Us</a>
+            <a href="#" onclick="showSection('cart')">Cart</a>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <main id="home">
+        <h2>Welcome to The Style Loft</h2>
+        <div class="centered-images">
+            <!-- First Row of Images -->
+            <div class="image-container" onclick="showOptions('product1-options')">
+                <img src="image1.jpg" alt="Clothing Item 1">
+                <div id="product1-options" class="product-options">
+                    <p>Select Size:</p>
+                    <select>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                        <option>XL</option>
+                    </select>
+                    <button onclick="addToCart('Clothing Item 1', 25)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="image-container" onclick="showOptions('product2-options')">
+                <img src="image2.jpg" alt="Clothing Item 2">
+                <div id="product2-options" class="product-options">
+                    <p>Select Size:</p>
+                    <select>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                        <option>XL</option>
+                    </select>
+                    <button onclick="addToCart('Clothing Item 2', 30)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="image-container" onclick="showOptions('product3-options')">
+                <img src="image3.jpg" alt="Clothing Item 3">
+                <div id="product3-options" class="product-options">
+                    <p>Select Size:</p>
+                    <select>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                        <option>XL</option>
+                    </select>
+                    <button onclick="addToCart('Clothing Item 3', 35)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Images Beneath -->
+        <div class="additional-images">
+            <img src="image7.jpg" alt="Clothing Item 7">
+            <img src="image8.jpg" alt="Clothing Item 8">
+        </div>
+    </main>
+
+    <!-- Mens Section -->
+    <main id="mens" class="hidden">
+        <h2>Mens Clothing</h2>
+        <div class="mens-section">
+            <div class="product mens-product">
+                <img src="mens1.jpg" alt="Mens Product 1">
+                <p>Mens T-Shirt - $25</p>
+                <select>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XL</option>
+                </select>
+                <button onclick="addToCart('Mens T-Shirt', 25)">Add to Cart</button>
+            </div>
+            <div class="product mens-product">
+                <img src="mens2.jpg" alt="Mens Product 2">
+                <p>Mens Jeans - $40</p>
+                <select>
+                    <option>28</option>
+                    <option>30</option>
+                    <option>32</option>
+                    <option>34</option>
+                    <option>36</option>
+                </select>
+                <button onclick="addToCart('Mens Jeans', 40)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Womens Section -->
+    <main id="womens" class="hidden">
+        <h2>Womens Clothing</h2>
+        <div class="womens-section">
+            <div class="product womens-product">
+                <img src="womens1.jpg" alt="Womens Product 1">
+                <p>Womens Dress - $30</p>
+                <select>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XL</option>
+                </select>
+                <button onclick="addToCart('Womens Dress', 30)">Add to Cart</button>
+            </div>
+            <div class="product womens-product">
+                <img src="womens2.jpg" alt="Womens Product 2">
+                <p>Womens Skirt - $20</p>
+                <select>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XL</option>
+                </select>
+                <button onclick="addToCart('Womens Skirt', 20)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact Us Section -->
+    <main id="contact" class="hidden">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" cols="30" required></textarea><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+
+    <!-- Cart Section -->
+    <main id="cart" class="hidden">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <button class="pay-button" onclick="showSection('payment')">Pay Now</button>
+    </main>
+
+    <!-- Payment Section -->
+    <main id="payment" class="hidden">
+        <h2>Payment</h2>
+        <form>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required><br><br>
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" required><br><br>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required><br><br>
+            <button type="submit">Submit Payment</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy;The Style Loft</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle navigation and cart functionality
+
+        // Function to show different sections based on navigation clicks
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main');
+            sections.forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Function to show product options overlay
+        function showOptions(optionsId) {
+            const options = document.querySelectorAll('.product-options');
+            options.forEach(option => option.style.display = 'none');
+            document.getElementById(optionsId).style.display = 'flex';
+        }
+
+        // Function to add items to the cart
+        let cart = [];
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
+        }
+
+        // Function to update cart display
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach((item, index) => {
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.product}</span>
+                        <span>$${item.price}</span>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+            });
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+    </script>
+</body>
+
+</html>
